@@ -1,5 +1,6 @@
 package com.africanbigcats;
 
+import java.io.IOException;
 import java.util.*;
 
 /*
@@ -24,12 +25,10 @@ public class Menu {
         printLine();
         System.out.println("African Big Cats App");
         printLine();
-
         /*
-         * TIP: In this area of the code, the additional commands need to be created and
-         * added to the menu.
+         * DONE TIP: In this area of the code, the additional commands need to be
+         * created and added to the menu.
          */
-
         printCommand('c', "[C]reates a big cat");
         printCommand('d', "[D]eletes a big cat");
         printCommand('f', "[F]inds a big cat");
@@ -38,7 +37,6 @@ public class Menu {
         printCommand('w', "[W]arning report");
         printCommand('q', "[Q]uits");
         printLine();
-
     }
 
     private static void printLine() {
@@ -55,7 +53,7 @@ public class Menu {
         Character command = '_';
 
         String rawInput = input.nextLine();
-
+        System.out.println("debug1: "+ rawInput);
         if (rawInput.length() > 0) {
             rawInput = rawInput.toLowerCase();
             command = rawInput.charAt(0);
@@ -71,38 +69,45 @@ public class Menu {
         Boolean success = true;
 
         /*
-         * TIP: In this area of the code, the additional commands need to be created and
-         * added.
+         * DONE TIP: In this area of the code, the additional commands need to be
+         * created and added.
          */
 
         switch (command) {
 
         case 'c':
             executeCreate(catList);
+            success = false;
             break;
 
         case 'd':
             executeDetele(catList);
+            success = false;
             break;
 
         case 'f':
             executeFind(catList);
+            success = false;
             break;
 
         case 'l':
             executeList(catList);
+            success = false;
             break;
 
         case 'r':
             executeRisk(catList);
+            success = false;
             break;
 
         case 'w':
             executeWarning(catList);
+            success = false;
             break;
 
         case 'q':
             executeQuit();
+            success = false;
             break;
 
         default:
@@ -138,7 +143,6 @@ public class Menu {
     }
 
     public Panthera getNewCat(String name) {
-
         /*
          * TIP: In this area of the code, students need to get input from the user for
          * the type of cat and create the correct type.
@@ -147,37 +151,51 @@ public class Menu {
          * also needs to be added.
          * 
          */
-
-        Panthera result = new Tiger(name);
-
-        return result;
-
+        // get the number 
+        System.out.println();
+        System.out.print("Enter a 1 for Tiger, 2 for Lion, 3 for Jaguar:");
+        Integer numberInput = input.nextInt();
+        System.out.println();
+        Panthera result;
+        System.out.println("debug numberInput: " +numberInput);
+        switch (numberInput) {
+        case 1:
+            result = new Tiger(name); // DO NOT REMOVE
+            System.out.println("STATUS: " + name + " has been added.");
+            break;
+        case 2:
+            result = new Lion(name);
+            System.out.println("STATUS: " + name + " has been added.");
+            break;
+        case 3:
+            result = new Jagnuar(name);
+            System.out.println("STATUS: " + name + " has been added.");
+            break;   
+        default:
+            result = new Tiger(name); // DO NOT REMOVE
+            System.out.println("ERROR: Invalid big cat type. Create a tiger name " + name);
+            break;
+        }
+        System.out.println("result debug: " +result);
+        return result; // DO NOT REMOVE
+        
     }
 
     // create a cat, if it's unique
     public void executeCreate(LinkedList<Panthera> catList) {
-
         // get the name
         System.out.println();
         System.out.print("Enter a name for the big cat to create: ");
-
-        try {
-            String name = input.nextLine();
+        String name = input.nextLine();
         System.out.println();
-
-
-            }
-        
-
         /*
-         * TIP: In this area of the code, students would need to add in checking if the
-         * cat name already exists in order to prevent duplicates
-         */
-
+            TIP:
+            In this area of the code, students would need to add in checking if the cat name
+            already exists in order to prevent duplicates
+        */
         Panthera cat = getNewCat(name);
+        System.out.println("cat debug: " +cat);
         catList.add(cat);
-
-
     }
 
     // list all big cats
