@@ -21,7 +21,6 @@ public class Menu {
 
     // prints the menu
     public void print() {
-
         printLine();
         System.out.println("African Big Cats App");
         printLine();
@@ -77,37 +76,30 @@ public class Menu {
 
         case 'c':
             executeCreate(catList);
-            success = false;
             break;
 
         case 'd':
             executeDetele(catList);
-            success = false;
             break;
 
         case 'f':
             executeFind(catList);
-            success = false;
             break;
 
         case 'l':
             executeList(catList);
-            success = false;
             break;
 
         case 'r':
             executeRisk(catList);
-            success = false;
             break;
 
         case 'w':
             executeWarning(catList);
-            success = false;
             break;
 
         case 'q':
             executeQuit();
-            success = false;
             break;
 
         default:
@@ -152,7 +144,6 @@ public class Menu {
          * 
          */
         // get the number 
-        System.out.println();
         System.out.print("Enter a 1 for Tiger, 2 for Lion, 3 for Jaguar:");
         Integer numberInput = input.nextInt();
         System.out.println();
@@ -161,24 +152,21 @@ public class Menu {
         switch (numberInput) {
         case 1:
             result = new Tiger(name); // DO NOT REMOVE
-            System.out.println("STATUS: " + name + " has been added.");
             break;
         case 2:
             result = new Lion(name);
-            System.out.println("STATUS: " + name + " has been added.");
             break;
         case 3:
             result = new Jagnuar(name);
-            System.out.println("STATUS: " + name + " has been added.");
             break;   
         default:
             result = new Tiger(name); // DO NOT REMOVE
-            System.out.println("ERROR: Invalid big cat type. Create a tiger name " + name);
+            System.out.println("ERROR: Invalid big cat type. Creating a tiger named " + name);
             break;
         }
+        System.out.println("STATUS: " + name + " has been added.");
         System.out.println("result debug: " +result);
         return result; // DO NOT REMOVE
-        
     }
 
     // create a cat, if it's unique
@@ -188,14 +176,17 @@ public class Menu {
         System.out.print("Enter a name for the big cat to create: ");
         String name = input.nextLine();
         System.out.println();
-        /*
+        Panthera cat = getNewCat(name);
+        /*  DEBUG
             TIP:
             In this area of the code, students would need to add in checking if the cat name
             already exists in order to prevent duplicates
-        */
-        Panthera cat = getNewCat(name);
-        System.out.println("cat debug: " +cat);
-        catList.add(cat);
+        */ 
+        if (!catList.contains(cat)){
+            catList.add(cat);
+        } else {
+            System.out.println("Already Added");
+        }
     }
 
     // list all big cats
@@ -224,15 +215,70 @@ public class Menu {
      * TIP: Additional methods and functionality need to be added to this class.
      */
     private void executeWarning(LinkedList<Panthera> catList) {
+        System.out.println();
+        System.out.print("Enter your current longitude: ");
+        String my_long = input.nextLine();
+        System.out.print("Enter your current latitude: ");
+        String name2 = input.nextLine();
+
+        printLine();
+        System.out.println("African Big Cats Warning Report");
+        printLine();
+        //System.out.println(catList.name(name1));
+        //System.out.println(catList.get(name2).name().equals(name));
+        printLine();
+        String catx = "_";
+        float distancex = 0;
+        System.out.println("The closest cat is " +catx+ " which is at a distance of " +distancex);
     }
 
     private void executeRisk(LinkedList<Panthera> catList) {
+        System.out.println();
+        System.out.print("Enter a name for the first big cat: ");
+        String name1 = input.nextLine();
+        System.out.print("Enter a name for the second big cat: ");
+        String name2 = input.nextLine();
+
+        printLine();
+        System.out.println("African Big Cats Risk Report");
+        printLine();
+        //System.out.println(catList.name(name1));
+        //System.out.println(catList.get(name2).name().equals(name));
+        printLine();
+        float distance = 0;
+        System.out.println("The distance between " +name1+ " and " +name2+ " is " + distance);
     }
 
     private void executeFind(LinkedList<Panthera> catList) {
+        System.out.println();
+        System.out.print("Enter name: ");
+        String name = input.nextLine();
+        System.out.println();
+
+        for (int i=0 ; i<catList.size() ; i++) {
+            if (catList.get(i).name().equals(name)) {
+                catList.remove(i);
+                System.out.println("Name found");
+                return;
+            }
+        }
+        System.out.println(name + " not exist");
     }
 
     private void executeDetele(LinkedList<Panthera> catList) {
+        System.out.println();
+        System.out.print("Enter name: ");
+        String name = input.nextLine();
+        System.out.println();
+
+        for (int i=0 ; i<catList.size() ; i++) {
+            if (catList.get(i).name().equals(name)) {
+                catList.remove(i);
+                System.out.println("Name removed");
+                return;
+            }
+        }
+        System.out.println(name + " not exist");
     }
 
 }

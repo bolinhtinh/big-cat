@@ -31,7 +31,13 @@ public class Jagnuar extends Panthera {
         s += ", ";
         s += "latitude: " + latitude();
         s += ", ";
+        s += "weight: " + weight();
+        s += ", ";
+        s += "speed: " + speed();
+        s += ", ";
         s += "fur: " + fur();
+        s += ", ";
+        s += "sleepsInTrees: " + sleepsInTrees();
         s += " }";
 
         return s;
@@ -39,7 +45,11 @@ public class Jagnuar extends Panthera {
     }
 
     public String fur() {
-        return "stripes";
+        return "spots";
+    }
+
+    public boolean sleepsInTrees() {
+        return true;
     }
 
 }

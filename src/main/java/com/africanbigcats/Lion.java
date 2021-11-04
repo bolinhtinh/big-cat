@@ -31,6 +31,10 @@ public class Lion extends Panthera {
         s += ", ";
         s += "latitude: " + latitude();
         s += ", ";
+        s += "weight: " + weight();
+        s += ", ";
+        s += "speed: " + speed();
+        s += ", ";
         s += "fur: " + fur();
         s += " }";
 
@@ -39,7 +43,7 @@ public class Lion extends Panthera {
     }
 
     public String fur() {
-        return "stripes";
+        return "mane";
     }
 
 }

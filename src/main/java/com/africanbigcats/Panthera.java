@@ -36,6 +36,10 @@ public class Panthera extends PantheraGPS {
         s += "longitude: " + this.longitude();
         s += ", ";
         s += "latitude: " + this.latitude();
+        s += ", ";
+        s += "weight: " + weight();
+        s += ", ";
+        s += "speed: " + speed();
         s += " }";
 
         return s;
