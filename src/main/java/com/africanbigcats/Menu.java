@@ -26,23 +26,23 @@ public class Menu {
         printLine();
 
         /*
-            TIP:
-            In this area of the code, the additional commands need to be created and added to the menu.
-        */
+         * TIP: In this area of the code, the additional commands need to be created and
+         * added to the menu.
+         */
 
-        printCommand('c',"[C]reates a big cat");
-        printCommand('d',"[D]eletes a big cat");
-        printCommand('f',"[F]inds a big cat");
-        printCommand('l',"[L]ists all big Cats");
-        printCommand('r',"[R]isk report");
-        printCommand('w',"[W]arning report");
-        printCommand('q',"[Q]uits");
+        printCommand('c', "[C]reates a big cat");
+        printCommand('d', "[D]eletes a big cat");
+        printCommand('f', "[F]inds a big cat");
+        printCommand('l', "[L]ists all big Cats");
+        printCommand('r', "[R]isk report");
+        printCommand('w', "[W]arning report");
+        printCommand('q', "[Q]uits");
         printLine();
 
     }
 
     private static void printLine() {
-        System.out.println("----------------------------------------------------------" );
+        System.out.println("----------------------------------------------------------");
     }
 
     private static void printCommand(Character command, String desc) {
@@ -55,7 +55,7 @@ public class Menu {
         Character command = '_';
 
         String rawInput = input.nextLine();
-        
+
         if (rawInput.length() > 0) {
             rawInput = rawInput.toLowerCase();
             command = rawInput.charAt(0);
@@ -71,28 +71,44 @@ public class Menu {
         Boolean success = true;
 
         /*
-            TIP:
-            In this area of the code, the additional commands need to be created and added.
-        */
+         * TIP: In this area of the code, the additional commands need to be created and
+         * added.
+         */
 
-        switch(command) {
+        switch (command) {
 
-            case 'c':
-                executeCreate(catList);
-                break;
+        case 'c':
+            executeCreate(catList);
+            break;
 
-            case 'l':
-                executeList(catList);
-                break;
+        case 'd':
+            executeDetele(catList);
+            break;
 
-            case 'q':
-                executeQuit();
-                break;
+        case 'f':
+            executeFind(catList);
+            break;
 
-            default:
-                System.out.println("ERROR: Unknown commmand");
-                success = false;
-          }
+        case 'l':
+            executeList(catList);
+            break;
+
+        case 'r':
+            executeRisk(catList);
+            break;
+
+        case 'w':
+            executeWarning(catList);
+            break;
+
+        case 'q':
+            executeQuit();
+            break;
+
+        default:
+            System.out.println("ERROR: Unknown commmand");
+            success = false;
+        }
 
         return success;
     }
@@ -101,7 +117,7 @@ public class Menu {
     public void update(LinkedList<Panthera> catList) {
 
         // update by moving all the cats
-        for (Panthera cat: catList) {
+        for (Panthera cat : catList) {
             cat.move();
         }
 
@@ -122,16 +138,15 @@ public class Menu {
     }
 
     public Panthera getNewCat(String name) {
-        
+
         /*
-            TIP:
-            In this area of the code, students need to get input from the user for the type of cat 
-            and create the correct type.
-
-            Currently, the code always create a Tiger.  But, support for Lions and Jaguars
-            also needs to be added.
-
-        */
+         * TIP: In this area of the code, students need to get input from the user for
+         * the type of cat and create the correct type.
+         * 
+         * Currently, the code always create a Tiger. But, support for Lions and Jaguars
+         * also needs to be added.
+         * 
+         */
 
         Panthera result = new Tiger(name);
 
@@ -145,21 +160,27 @@ public class Menu {
         // get the name
         System.out.println();
         System.out.print("Enter a name for the big cat to create: ");
-        String name = input.nextLine();
+
+        try {
+            String name = input.nextLine();
         System.out.println();
 
+
+            }
+        
+
         /*
-            TIP:
-            In this area of the code, students would need to add in checking if the cat name
-            already exists in order to prevent duplicates
-        */
+         * TIP: In this area of the code, students would need to add in checking if the
+         * cat name already exists in order to prevent duplicates
+         */
 
         Panthera cat = getNewCat(name);
         catList.add(cat);
 
+
     }
 
-    // list all big cats 
+    // list all big cats
     public void executeList(LinkedList<Panthera> catList) {
 
         System.out.println();
@@ -182,9 +203,18 @@ public class Menu {
     }
 
     /*
-        TIP:
-        Additional methods and functionality need to be added to this class.
-    */
+     * TIP: Additional methods and functionality need to be added to this class.
+     */
+    private void executeWarning(LinkedList<Panthera> catList) {
+    }
 
+    private void executeRisk(LinkedList<Panthera> catList) {
+    }
+
+    private void executeFind(LinkedList<Panthera> catList) {
+    }
+
+    private void executeDetele(LinkedList<Panthera> catList) {
+    }
 
 }
