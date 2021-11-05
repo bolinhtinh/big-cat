@@ -10,7 +10,6 @@ public class App
 {
     public static void main( String[] args )
     {
-
         Menu appMenu = new Menu();
 
         Character command = '_';
@@ -24,7 +23,7 @@ public class App
 
             // get a command
             System.out.print("Enter a command: ");
-            command = appMenu.getCommand();
+            command = appMenu.getCommand(); //BUG HERE
 
             // execute a commmand
             appMenu.executeCommand(command, catList);

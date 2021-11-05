@@ -48,65 +48,50 @@ public class Menu {
 
     // get first character from input
     public Character getCommand() {
-
         Character command = '_';
-
         String rawInput = input.nextLine();
-        System.out.println("debug1: "+ rawInput);
         if (rawInput.length() > 0) {
             rawInput = rawInput.toLowerCase();
             command = rawInput.charAt(0);
         }
-
         return command;
-
     }
 
     // command switch
     public Boolean executeCommand(Character command, LinkedList<Panthera> catList) {
-
         Boolean success = true;
-
         /*
          * DONE TIP: In this area of the code, the additional commands need to be
          * created and added.
          */
-
         switch (command) {
-
         case 'c':
             executeCreate(catList);
             break;
-
         case 'd':
             executeDetele(catList);
+            success = false;
             break;
-
         case 'f':
             executeFind(catList);
+            success = false;
             break;
-
         case 'l':
             executeList(catList);
             break;
-
         case 'r':
             executeRisk(catList);
             break;
-
         case 'w':
             executeWarning(catList);
             break;
-
         case 'q':
             executeQuit();
             break;
-
         default:
             System.out.println("ERROR: Unknown commmand");
             success = false;
         }
-
         return success;
     }
 
@@ -165,7 +150,6 @@ public class Menu {
             break;
         }
         System.out.println("STATUS: " + name + " has been added.");
-        System.out.println("result debug: " +result);
         return result; // DO NOT REMOVE
     }
 
@@ -182,8 +166,10 @@ public class Menu {
             In this area of the code, students would need to add in checking if the cat name
             already exists in order to prevent duplicates
         */ 
+
         if (!catList.contains(cat)){
             catList.add(cat);
+            System.out.println("Added:" + cat);
         } else {
             System.out.println("Already Added");
         }
