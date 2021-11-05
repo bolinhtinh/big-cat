@@ -1,5 +1,5 @@
 package com.africanbigcats;
-
+import java.lang.Math;
 import java.io.IOException;
 import java.util.*;
 
@@ -206,29 +206,66 @@ public class Menu {
         printLine();
         System.out.println("African Big Cats Warning Report");
         printLine();
-        //System.out.println(catList.name(name1));
-        //System.out.println(catList.get(name2).name().equals(name));
+
+        double max_x = 0;
+        int max_x_index = 0;
+        for (int i=0 ; i<catList.size() ; i++) {
+            if (Math.abs( catList.get(i).longitude() - my_longitude) > max_x){
+                max_x = Math.abs(catList.get(i).longitude());
+                max_x_index = i;
+            }
+        }
+        double max_y = 0;
+        int max_y_index = 0;
+        for (int j=0 ; j<catList.size() ; j++) {    
+            if (Math.abs( catList.get(j).latitude() - my_latitude) > max_y){
+                max_y = Math.abs(catList.get(j).longitude());
+                max_y_index = j;
+            }
+        }
         printLine();
-        String catx = "_";
-        float distancex = 0;
-        System.out.println("The closest cat is " +catx+ " which is at a distance of " +distancex);
+        double most_safe_distance = 0;
+        if ( max_y > max_x) {
+            most_safe_distance = max_y;
+            System.out.println("The closest cat is " +catList.get(max_y_index).name()+ " which is at a distance of " +most_safe_distance);
+        } else {
+            most_safe_distance = max_x;
+            System.out.println("The closest cat is " +catList.get(max_x_index).name()+ " which is at a distance of " +most_safe_distance);
+        }
     }
 
     private void executeRisk(LinkedList<Panthera> catList) {
         System.out.println();
         System.out.print("Enter a name for the first big cat: ");
-        String name1 = input.nextLine();
+        String cat1 = input.nextLine();
         System.out.print("Enter a name for the second big cat: ");
-        String name2 = input.nextLine();
+        String cat2 = input.nextLine();
 
         printLine();
         System.out.println("African Big Cats Risk Report");
         printLine();
-        //System.out.println(catList.name(name1));
-        //System.out.println(catList.get(name2).name().equals(name));
+        Integer cat1_index = 0;
+        for (int i=0 ; i<catList.size() ; i++) {
+            if (catList.get(i).name() == cat1) { //cat1_index
+                cat1_index = i;
+            }
+        }
+        Integer cat2_index = 0;
+        for (int j=0 ; j<catList.size() ; j++) {
+            if (catList.get(j).name() == cat2) { //cat2_index
+                cat2_index = j;
+            }
+        }
+        double x1 = catList.get(cat1_index).longitude();
+        double x2 = catList.get(cat2_index).longitude();
+        double y1 = catList.get(cat1_index).latitude();
+        double y2 = catList.get(cat2_index).latitude();
+
         printLine();
-        float distance = 0;
-        System.out.println("The distance between " +name1+ " and " +name2+ " is " + distance);
+        double x = Math.abs(x2-x1);
+        double y = Math.abs(y2-y1);
+        double distance = Math.sqrt(Math.pow(x,x)+Math.pow(y,y));
+        System.out.println("The distance between " + cat1 + " and " + cat2 + " is " + distance);
     }
 
     private void executeFind(LinkedList<Panthera> catList) {
@@ -253,7 +290,6 @@ public class Menu {
         System.out.println();
 
         for (int i=0 ; i<catList.size() ; i++) {
-            System.out.println(catList.get(i).name() + " catList.get(i)");
             if (catList.get(i).name() == name) { //troubleshoot
                 catList.remove(i);
                 System.out.println("Name removed");
