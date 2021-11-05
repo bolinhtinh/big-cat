@@ -5,19 +5,20 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "type": "java",
-            "name": "Launch Current File",
+            "name": "Debug Stop",
             "request": "launch",
             "mainClass": "${file}",
             "stopOnEntry": true
         },
+
         {
             "type": "java",
-            "name": "Launch App",
+            "name": "Debug",
             "request": "launch",
-            "mainClass": "com.africanbigcats.App",
-            "projectName": "big-cat"
-        }
+            "mainClass": "${file}"
+        },
     ]
 }

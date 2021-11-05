@@ -70,11 +70,9 @@ public class Menu {
             break;
         case 'd':
             executeDetele(catList);
-            success = false;
             break;
         case 'f':
             executeFind(catList);
-            success = false;
             break;
         case 'l':
             executeList(catList);
@@ -133,7 +131,6 @@ public class Menu {
         Integer numberInput = input.nextInt();
         System.out.println();
         Panthera result;
-        System.out.println("debug numberInput: " +numberInput);
         switch (numberInput) {
         case 1:
             result = new Tiger(name); // DO NOT REMOVE
@@ -166,12 +163,11 @@ public class Menu {
             In this area of the code, students would need to add in checking if the cat name
             already exists in order to prevent duplicates
         */ 
-
-        if (!catList.contains(cat)){
+        if (!catList.contains(cat.name())){
             catList.add(cat);
-            System.out.println("Added:" + cat);
+            System.out.println("Added:" + cat.name());
         } else {
-            System.out.println("Already Added");
+            System.out.println("ERROR: Duplicate " + cat.name());
         }
     }
 
@@ -203,9 +199,9 @@ public class Menu {
     private void executeWarning(LinkedList<Panthera> catList) {
         System.out.println();
         System.out.print("Enter your current longitude: ");
-        String my_long = input.nextLine();
+        Float my_longitude = input.nextFloat();
         System.out.print("Enter your current latitude: ");
-        String name2 = input.nextLine();
+        Float my_latitude = input.nextFloat();
 
         printLine();
         System.out.println("African Big Cats Warning Report");
@@ -258,12 +254,14 @@ public class Menu {
         System.out.println();
 
         for (int i=0 ; i<catList.size() ; i++) {
-            if (catList.get(i).name().equals(name)) {
+            System.out.println(catList.get(i).name() + " catList.get(i)");
+            if (catList.get(i).name() == name) { //troubleshoot
                 catList.remove(i);
                 System.out.println("Name removed");
                 return;
             }
         }
+        
         System.out.println(name + " not exist");
     }
 
