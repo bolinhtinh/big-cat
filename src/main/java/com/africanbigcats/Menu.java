@@ -208,7 +208,7 @@ public class Menu {
         printLine();
 
         double max_x = 0;
-        int max_x_index = 0;
+        int max_x_index = 0; 
         for (int i=0 ; i<catList.size() ; i++) {
             if (Math.abs( catList.get(i).longitude() - my_longitude) > max_x){
                 max_x = Math.abs(catList.get(i).longitude());
