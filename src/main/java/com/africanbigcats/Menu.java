@@ -238,9 +238,8 @@ public class Menu {
         System.out.println();
 
         for (int i=0 ; i<catList.size() ; i++) {
-            if (catList.get(i).name().equals(name)) {
-                catList.remove(i);
-                System.out.println("Name found");
+            if (catList.get(i).name() == name) {
+                System.out.println("Name found at index: " + i);
                 return;
             }
         }
@@ -261,7 +260,6 @@ public class Menu {
                 return;
             }
         }
-        
         System.out.println(name + " not exist");
     }
 
